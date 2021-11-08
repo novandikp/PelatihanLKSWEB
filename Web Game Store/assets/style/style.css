@@ -1,0 +1,111 @@
+nav {
+  background-color: slateblue;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+}
+
+nav > .nav-link {
+  flex: 1;
+}
+
+nav > .nav-link > ul {
+  list-style: none;
+  float: right;
+}
+
+.clearfix {
+  clear: both;
+}
+
+nav > .nav-link > ul > li {
+  display: inline-block;
+  margin-left: 1em;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sidebar-content {
+  margin-top: 2rem;
+}
+
+.sidebar-content > ul {
+  list-style: none;
+}
+
+.sidebar-content > ul > li {
+  padding: 0.5rem;
+}
+
+.sidebar-content a {
+  color: slateblue;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sidebar-content .active {
+  background-color: royalblue;
+}
+
+.sidebar-content li:hover {
+  background-color: royalblue;
+  color: white !important;
+}
+
+.sidebar-content .active a {
+  color: white !important;
+}
+
+.carousel-item img {
+  max-height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.detail-game {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 30%;
+  background-color: slateblue;
+  z-index: 1000;
+}
+
+footer {
+  background-color: grey;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-content-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.detail-game {
+  display: none;
+}
+
+.detail-game.active {
+  display: block !important;
+}
+.detail-game-content {
+  flex: 1;
+}
