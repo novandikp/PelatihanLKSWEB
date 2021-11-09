@@ -1,38 +1,6 @@
-nav {
+.navbar {
   background-color: slateblue;
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  padding: 0.75rem;
 }
-
-nav > .nav-link {
-  flex: 1;
-}
-
-nav > .nav-link > ul {
-  list-style: none;
-  float: right;
-}
-
-.clearfix {
-  clear: both;
-}
-
-nav > .nav-link > ul > li {
-  display: inline-block;
-  margin-left: 1em;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
 .sidebar-content {
   margin-top: 2rem;
 }
@@ -43,10 +11,11 @@ nav a {
 
 .sidebar-content > ul > li {
   padding: 0.5rem;
+  color: slateblue;
 }
 
 .sidebar-content a {
-  color: slateblue;
+  color: inherit;
   text-decoration: none;
   font-weight: bold;
 }
@@ -76,10 +45,13 @@ nav a {
   bottom: 0;
   right: 0;
   width: 30%;
-  background-color: slateblue;
-  z-index: 1000;
+  background-color: rgb(90, 172, 205);
+  z-index: 2000;
+  display: none;
 }
-
+.detail-game.active {
+  display: block !important;
+}
 footer {
   background-color: grey;
   color: white;
@@ -99,13 +71,60 @@ footer {
   align-items: center;
 }
 
-.detail-game {
-  display: none;
-}
-
-.detail-game.active {
-  display: block !important;
-}
 .detail-game-content {
   flex: 1;
+}
+
+.backdrop-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-content ul {
+  padding-left: 0;
+}
+
+.card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+
+/* Tablet */
+@media only screen and (max-width: 768px) {
+  .card-content h3 {
+    font-size: 1rem;
+  }
+
+  .detail-game {
+    width: 50%;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 480px) {
+  .carousel-item img {
+    height: 400px;
+  }
+
+  .detail-game {
+    width: 100%;
+  }
+
+  .carousel-caption {
+    font-weight: bold;
+  }
+
+  .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+  }
 }

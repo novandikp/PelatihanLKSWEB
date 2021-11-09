@@ -9,19 +9,31 @@
     <link rel="stylesheet" href="assets/style/style.css"/>
 </head>
 <body>
-    <nav>
-        <a class="nav-brand" href="#">
-            <img src="assets/img/logo.png" width="32px" alt="logo"/>
-            <span>ITB Game Store</span>
-        </a>
-        <div class="nav-link">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
-            </ul>   
-            <div class="clearfix"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="nav-brand" href="#">
+                <img src="assets/img/logo.png" width="32px" alt="logo"/>
+                <span class="ms-3 text-white">ITB Game Store</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavbar"  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuNavbar">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Register</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+        
+        
     </nav>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
@@ -32,29 +44,29 @@
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img src="assets/img/cover.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
+            <div class="carousel-caption">
               <h1>Fornite</h1>
               <p>Multiplayer Battle Royale.</p>
               <button class="btn btn-success btn-lg">Download</button>
-              <button class="btn btn-primary btn-lg">Detail Game</button>
+              <button class="btn btn-primary btn-lg btn-detail">Detail Game</button>
             </div>
           </div>
           <div class="carousel-item">
             <img src="assets/img/cover.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
+            <div class="carousel-caption">
                 <h1>PUBG</h1>
                 <p>Multiplayer Battle Royale.</p>
                 <button class="btn btn-success btn-lg">Download</button>
-                <button class="btn btn-primary btn-lg">Detail Game</button>
+                <button class="btn btn-primary btn-lg btn-detail">Detail Game</button>
             </div>
           </div>
           <div class="carousel-item">
             <img src="assets/img/cover.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
+            <div class="carousel-caption">
                 <h1>Free Fire</h1>
                 <p>Multiplayer Battle Royale.</p>
                 <button class="btn btn-success btn-lg">Download</button>
-                <button class="btn btn-primary btn-lg">Detail Game</button>
+                <button class="btn btn-primary btn-lg btn-detail">Detail Game</button>
             </div>
           </div>
         </div>
@@ -69,7 +81,7 @@
       </div>
     <div class="container mt-5">
         <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 d-none d-sm-block">
             <div class="sidebar-title">
                 <h2>Categories</h2>
             </div>
@@ -95,8 +107,8 @@
             </div>
             <div class="main-bar-content">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <div class="card mt-2">
                             <div class="card-image">
                                 <img class="img-fluid" src="assets/img/fornite.jpg" alt="fornite">
                             </div>
@@ -107,8 +119,8 @@
                             </div>  
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <div class="card mt-2">
                             <div class="card-image">
                                 <img class="img-fluid"  src="assets/img/fornite.jpg" alt="fornite">
                             </div>
@@ -119,8 +131,8 @@
                             </div>  
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <div class="card mt-2">
                             <div class="card-image">
                                 <img class="img-fluid" src="assets/img/fornite.jpg" alt="fornite">
                             </div>
@@ -131,8 +143,8 @@
                             </div>  
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="card">
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <div class="card mt-2">
                             <div class="card-image">
                                 <img class="img-fluid" src="assets/img/fornite.jpg" alt="fornite">
                             </div>
@@ -149,18 +161,21 @@
         </div>
         </div>
     </div>
-    <div class="detail-game active  py-3 px-2">
-        <button class="btn btn-danger">Close</button>
-        <div class="d-flex flex-column">
-            <div class="detail-game-content p-2">
-                <img class="img-fluid" src="assets/img/cover.jpg"/>
-                <h1>Fornite</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto maiores, perferendis suscipit fugit distinctio voluptatem neque vero ipsum, dignissimos sunt nemo ad atque excepturi facere explicabo amet illum aut laudantium.</p>
+    <div class="backdrop-bg d-none">
+        <div class="detail-game py-3 px-2">
+            <button class="btn btn-hide btn-danger d-block d-sm-none">Close</button>
+            <div class="d-flex flex-column">
+                <div class="detail-game-content p-2">
+                    <img class="img-fluid" src="assets/img/cover.jpg"/>
+                    <h1>Fornite</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto maiores, perferendis suscipit fugit distinctio voluptatem neque vero ipsum, dignissimos sunt nemo ad atque excepturi facere explicabo amet illum aut laudantium.</p>
+                </div>
+                <button class="btn btn-success">Download</button>
             </div>
-            <button class="btn btn-success">Download</button>
+           
         </div>
-       
     </div>
+   
     <footer>
         <div class="footer-content">
             <div class="footer-content-left">
@@ -170,8 +185,11 @@
             
         </div>  
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="assets/js/script.js"></script>
+
 </body>
 </html>
