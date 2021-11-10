@@ -15,6 +15,11 @@ class CreateGameAssetsTable extends Migration
     {
         Schema::create('game_assets', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('game_id')->nullable()->unsigned();
+            $table->string('path');
+            $table->boolean('featured_image');
+            $table->foreign('game_id')->references('id')
+                ->on('games')->onUpdate("cascade");
             $table->timestamps();
         });
     }

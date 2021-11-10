@@ -13,8 +13,14 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('komentar', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->nullable()->unsigned();
+            $table->bigInteger('game_id')->nullable()->unsigned();
+            $table->text('message');
+            $table->integer('rate');
+            $table->foreign('user_id')->references('id')
+                ->on('users')->onUpdate("cascade");
             $table->timestamps();
         });
     }

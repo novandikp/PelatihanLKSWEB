@@ -15,7 +15,15 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('developer_id')->nullable()->unsigned();
+            $table->string('name');
+            $table->text('description');
+            $table->string('homepage');
+            $table->boolean('enabled');
+            $table->timestamp("reviwed_at")->nullable();
             $table->timestamps();
+            $table->foreign('developer_id')->references('id')
+                ->on('users')->onUpdate("cascade");
         });
     }
 
