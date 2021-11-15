@@ -12,12 +12,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Home</a>
                 </li>
+                @if(Auth::check())
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="{{url("logout")}}">Logout</a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url("login")}}" href="#">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Register</a>
                 </li>
+                @endif
+
             </ul>
         </div>
     </div>

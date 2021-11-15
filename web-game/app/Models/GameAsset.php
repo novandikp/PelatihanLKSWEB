@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class GameAsset extends Model
 {
     use HasFactory;
+    protected $fillable = ['game_id', 'path', 'featured_image'];
 }

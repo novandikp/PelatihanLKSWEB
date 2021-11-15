@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
@@ -14,72 +15,64 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        return Comment::with('user', 'game')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validation = Validator::make($request->all(), [
+            'message' => 'required',
+            'rate' => 'required|numeric',
+            'user_id' => 'required|exists:users,id',
+            'game_id' => 'required|exists:games,id',
+        ]);
+        if ($validation->fails()) {
+            return response()->json($validation->errors(), 422);
+        } else {
+            return Comment::create($request->all());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
+
+    public function show($id)
     {
-        //
+        $comment = Comment::with('user', 'game')->find($id);
+        if ($comment) {
+            return $comment;
+        }
+        return response()->json(['message' => 'data tidak ditemukan'], 404);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
+
+    public function update(Request $request, $id)
     {
-        //
+        $comment = Comment::find($id);
+        if ($comment) {
+            $validation = Validator::make($request->all(), [
+                'message' => 'required',
+                'rate' => 'required|numeric',
+                'user_id' => 'required|exists:users,id',
+                'game_id' => 'required|exists:games,id',
+            ]);
+            if ($validation->fails()) {
+                return response()->json($validation->errors(), 422);
+            } else {
+                $comment->update($request->all());
+                return $comment;
+            }
+        }
+        return response()->json(['message' => 'data tidak ditemukan'], 404);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Comment $comment)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Comment $comment)
-    {
-        //
+        $comment = Comment::find($id);
+        if ($comment) {
+            $comment->delete();
+        } else {
+            return response()->json(['message' => 'data tidak ditemukan'], 404);
+        }
+        return $comment;
     }
 }

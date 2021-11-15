@@ -1,10 +1,14 @@
 @extends("layouts.index")
 @section("konten")
-<div class="d-flex">
-    <input type="text" class="form-control">
-    <button class="btn btn-secondary">Cari</button>
-</div>
-<button class="btn btn-primary my-2">Tambah</button>
+<form method="GET">
+
+    <div class="d-flex">
+        <input name="keyword" type="text" class="form-control">
+        <button type="submit" class="btn btn-secondary">Cari</button>
+    </div>
+</form>
+
+<a href={{url('user/form')}} class="btn btn-primary my-2">Tambah</a>
 
 <table class="table table-striped">
     <thead class="bg-primary text-white">
@@ -26,9 +30,9 @@
             <td>{{$user->email}}</td>
             <td>{{$user->role}}</td>
             <td>
-                <button class="btn-success btn-sm">Edit</button>
-                <button class="btn-primary btn-sm">Detail</button>
-                <button class="btn-danger btn-sm">Hapus</button>
+                <a href="{{route('user.edit',['id'=>$user->id])}}" class="btn-success btn-sm">Edit</a>
+                <a href="{{route('user.detail',['id'=>$user->id])}}" class="btn-primary btn-sm">Detail</a>
+                <a href="{{route('user.delete',['id'=>$user->id])}}" class="btn-danger btn-sm">Hapus</a>
             </td>
         </tr>
         @endforeach

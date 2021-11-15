@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -14,72 +15,69 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        $games = Game::all();
+        return view('game.index', compact('games'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+
+        $users = User::where("role", "Developer")->get();
+        return view('game.form', compact('users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'developer_id' => 'required',
+            'enabled' => 'required',
+            'homepage' => 'required',
+        ]);
+
+        $game = Game::create($request->all());
+        return redirect()->route('game.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Game $game)
     {
-        //
+        $game = $game->load("asset");
+
+        $users = User::where("role", "Developer")->get();
+        return view('game.detail', compact('game', 'users'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Game $game)
     {
-        //
+
+        $users = User::where("role", "Developer")->get();
+        return view('game.formedit', compact('users', 'game'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Game $game)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'developer_id' => 'required',
+            'enabled' => 'required',
+            'homepage' => 'required',
+        ]);
+        $game->update($request->all());
+        return redirect()->route('game.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Game $game)
     {
         //
+        $game->delete();
+        return redirect()->route('game.index');
     }
 }

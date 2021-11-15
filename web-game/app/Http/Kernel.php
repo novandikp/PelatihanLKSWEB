@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\DeveloperMiddleware;
+use App\Http\Middleware\PublisherMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -54,6 +56,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'auth.dev' => DeveloperMiddleware::class,
+        'auth.pub' => PublisherMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

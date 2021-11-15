@@ -21,6 +21,8 @@ class CreateCommentsTable extends Migration
             $table->integer('rate');
             $table->foreign('user_id')->references('id')
                 ->on('users')->onUpdate("cascade");
+            $table->foreign('game_id')->references('id')
+                ->on('games')->onUpdate("cascade");
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('komentar');
     }
 }
