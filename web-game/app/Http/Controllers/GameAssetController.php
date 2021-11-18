@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class GameAssetController extends Controller
 {
 
+    public function features()
+    {
+        return GameAsset::where('featured_image', 1)->with("game")->get();
+    }
+
     public function create($id)
     {
         return view('gameaset.form', compact('id'));

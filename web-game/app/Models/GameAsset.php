@@ -9,4 +9,10 @@ class GameAsset extends Model
 {
     use HasFactory;
     protected $fillable = ['game_id', 'path', 'featured_image'];
+
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 }

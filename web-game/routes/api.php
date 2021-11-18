@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GameApiController;
+use App\Http\Controllers\GameAssetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +24,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('/komentar', CommentController::class);
+Route::post("/login", AuthController::class . "@authApi");
+Route::get("/featured", GameAssetController::class . "@features");
+Route::resource('/game', GameApiController::class);

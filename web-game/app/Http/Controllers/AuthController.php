@@ -41,4 +41,24 @@ class AuthController extends Controller
         $error = new MessageBag(['error' => 'Email atau password salah']);
         return redirect('/login')->withErrors($error);
     }
+
+
+    public function authApi(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                Auth::login($user);
+                return response([
+                    'status' => 'success',
+                    'message' => 'Login berhasil',
+                    'data' => $user
+                ]);
+            }
+        }
+        return response([
+            'status' => 'error',
+            'message' => 'Email atau password salah'
+        ], 401);
+    }
 }

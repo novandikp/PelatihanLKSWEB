@@ -13,6 +13,8 @@ class Game extends Model
         'name', 'description', 'developer_id', 'homepage', 'enabled'
     ];
 
+    protected $appends = ['average_rating'];
+
     public function developer()
     {
         return $this->belongsTo(User::class);
@@ -21,5 +23,16 @@ class Game extends Model
     public function asset()
     {
         return $this->hasMany(GameAsset::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    //average_rating
+    public function getAverageRatingAttribute()
+    {
+        return round($this->comments()->avg('rate')) ?: 0;
     }
 }
