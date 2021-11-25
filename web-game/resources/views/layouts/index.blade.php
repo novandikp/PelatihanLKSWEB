@@ -19,5 +19,6 @@
 
 <script type="text/javascript" src="{{asset("assets/js/bootstrap.bundle.js")}}"></script>
 <script type="text/javascript" src="{{asset("assets/js/bootstrap.min.js")}}"></script>
+@stack("scripts")
 </body>
 </html>

@@ -9,8 +9,13 @@ const Item = ({ game }) => {
         "/" +
         game.asset[0].path
       : "https://images.bizlaw.id/gbr_artikel/images-2_294.webp";
+
+  const handleDragStart = (e, id) => {
+    console.log(id);
+    e.dataTransfer.setData("id", id);
+  };
   return (
-    <Col lg={3} md={4} xs={6}>
+    <Col draggable onDragStart={(e) => handleDragStart(e, game.id)} md={6}>
       <Card className="mt-2">
         <Card.Img variant="top" src={img} />
         <Card.Body>

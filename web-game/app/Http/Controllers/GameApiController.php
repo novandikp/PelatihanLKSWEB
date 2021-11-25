@@ -22,6 +22,7 @@ class GameApiController extends Controller
             'asset',
             'comments'
         )->first();
+        $game->comments->load('user');
         return $game;
     }
 }
